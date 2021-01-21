@@ -15,11 +15,18 @@
 // server.listen(port, hostname,() =>{
 //     console.log(`El servidor se está ejecutando en http://${hostname}:${port}/`);
 // });
+
+
 /**
  * Curso de Node Js con bluuweb!
  */
 
- const frutas = ['platano','sandía','manzana','pera','manzana'];
+//Importando forma 1
+//const frutero = require('./frutas')
+
+//Importando forma 2
+const {frutas,pisto} = require('./frutas');
  frutas.forEach(item =>{
      console.count(item);
  });
+console.log("\n"+pisto);
