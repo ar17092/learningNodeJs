@@ -1,40 +1,21 @@
 /**
- * Servidor básico creado con NodeJs desde documentación oficial
- */
-// const http = require('http');
-
-// const hostname= '127.0.0.1';
-// const port = 3000;
-
-// const server = http.createServer((req,res)=>{
-//     res.statusCode = 200;
-//     res.setHeader('Content-Type', 'text/plain');
-//     res.end('Hola mundo');
-// });
-
-// server.listen(port, hostname,() =>{
-//     console.log(`El servidor se está ejecutando en http://${hostname}:${port}/`);
-// });
-
-
-/**
  * Curso de Node Js con bluuweb!
  */
 
-//Importando forma 1
-//const frutero = require('./frutas')
+/**
+ * Servidor básico creado con NodeJs desde documentación oficial
+ */
+const http = require('http');
 
-//Importando forma 2
-const {frutas,pisto} = require('./frutas');
-var cowsay = require('cowsay');
+const hostname= '127.0.0.1';
+const port = 3000;
 
- frutas.forEach(item =>{
-     console.count(item);
- });
-console.log("\n"+pisto);
+const server = http.createServer((req,res)=>{
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<h1>Hola</h1> <h2>Mundo</h2> <p>Como <strong>estas</strong></p>');
+});
 
-console.log(cowsay.say({
-	text : "I'm a moooodule",
-	e : "oO",
-	T : "U "
-}));
+server.listen(port, hostname,() =>{
+    console.log(`El servidor se está ejecutando en http://${hostname}:${port}/`);
+});
