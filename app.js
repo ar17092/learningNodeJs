@@ -26,7 +26,15 @@
 
 //Importando forma 2
 const {frutas,pisto} = require('./frutas');
+var cowsay = require('cowsay');
+
  frutas.forEach(item =>{
      console.count(item);
  });
 console.log("\n"+pisto);
+
+console.log(cowsay.say({
+	text : "I'm a moooodule",
+	e : "oO",
+	T : "U "
+}));
