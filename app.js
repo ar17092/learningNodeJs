@@ -3,19 +3,40 @@
  */
 
 /**
- * Servidor básico creado con NodeJs desde documentación oficial
+ * Servidor express básico
  */
-const http = require('http');
 
-const hostname= '127.0.0.1';
+const express = require('express');
+const app = express();
 const port = 3000;
 
-const server = http.createServer((req,res)=>{
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('<h1>Hola</h1> <h2>Mundo</h2> <p>Como <strong>estas</strong></p>');
+
+/**
+ * Archivos estáticos, al ponerlo antes de las rutas, si index existe, tomará la ruta raíz
+ */
+app.use(express.static(__dirname+'/public'));
+
+/**
+ * Path raíz
+ */
+app.get('/',(req,res)=>{
+    res.send(`Hola mundo en puerto ${port}`)
 });
 
-server.listen(port, hostname,() =>{
-    console.log(`El servidor se está ejecutando en http://${hostname}:${port}/`);
+/**
+ * Path de login
+ */
+app.get('/login', (req,res)=>{
+    res.send('Página de login desde el path /login')
+});
+
+/**
+ * Enviando un servicio 404
+ */
+app.use((req, res, next)=>{
+    res.status(404).sendFile(__dirname+"/public/404.html")
+});
+
+app.listen(port, ()=>{
+    console.log(`Ejemplo de app escuchando en el url http://localhost:${port}`);
 });
