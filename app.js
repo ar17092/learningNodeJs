@@ -10,6 +10,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+//Motor de plantillas EJS
+app.set('view engine','ejs');
+app.set('views',__dirname+'/views');
 
 /**
  * Archivos estáticos, al ponerlo antes de las rutas, si index existe, tomará la ruta raíz
@@ -20,21 +23,24 @@ app.use(express.static(__dirname+'/public'));
  * Path raíz
  */
 app.get('/',(req,res)=>{
-    res.send(`Hola mundo en puerto ${port}`)
+    res.render("index",{titulo:"Titulo dinámico"});
 });
 
 /**
  * Path de login
  */
 app.get('/login', (req,res)=>{
-    res.send('Página de login desde el path /login')
+    res.render("login",{titulo:"Ingresa tus credenciales"});
 });
 
 /**
- * Enviando un servicio 404
+ * Enviando un status 404
  */
 app.use((req, res, next)=>{
-    res.status(404).sendFile(__dirname+"/public/404.html")
+    res.status(404).render("404",{
+        titulo:"404",
+        descripcion:"Not found"
+    });
 });
 
 app.listen(port, ()=>{

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ar17092/learningNodeJs#readme",
   "dependencies": {
     "cowsay": "^1.4.0",
+    "ejs": "^3.1.5",
     "express": "^4.17.1"
   }
 }
