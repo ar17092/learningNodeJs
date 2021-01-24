@@ -20,18 +20,10 @@ app.set('views',__dirname+'/views');
 app.use(express.static(__dirname+'/public'));
 
 /**
- * Path raíz
+ * Exportando router
  */
-app.get('/',(req,res)=>{
-    res.render("index",{titulo:"Titulo dinámico"});
-});
-
-/**
- * Path de login
- */
-app.get('/login', (req,res)=>{
-    res.render("login",{titulo:"Ingresa tus credenciales"});
-});
+app.use('/',require('./router/routes'));
+app.use('/mascotas',require('./router/Mascotas'));
 
 /**
  * Enviando un status 404
