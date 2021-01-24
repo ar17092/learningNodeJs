@@ -10,6 +10,19 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+//Conexión a base de datos
+const mongoose = require('mongoose');
+
+const user = "aragon";
+const password = "ajar24332";
+const dbname = "veterinaria";
+const uri = `mongodb+srv://${user}:${password}@clusteraragon.js6b2.mongodb.net/${dbname}?retryWrites=true&w=majority`;
+
+mongoose.connect(uri, 
+{useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=> console.log('DB conectada'))
+.catch(e => console.log(e));
+
 //Motor de plantillas EJS
 app.set('view engine','ejs');
 app.set('views',__dirname+'/views');
