@@ -13,9 +13,9 @@
             <% array.forEach(element => { %>
                 <tbody>
                     <tr>
-                        <th scope="col"><%= element.id %> </th>
-                        <td ><%= element.nombre %> </th>
-                        <td ><%= element.descripcion %> </th>
+                        <th scope="col"><%= element?.id %> </th>
+                        <td ><%= element?.nombre %> </th>
+                        <td ><%= element?.descripcion %> </th>
                         <td ><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> <button class="btn btn-warning"><i class="fas fa-edit"></i></button></th>
                     </tr>
                 </tbody>
