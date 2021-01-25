@@ -8,7 +8,10 @@
 
 const express = require('express');
 const app = express();
-const port = 3000;
+require('dotenv').config();
+
+//Al desplegarlo en heroku 
+const PORT = process.env.PORT || 3000;
 
 //Conexión a base de datos
 const mongoose = require('mongoose');
@@ -48,6 +51,6 @@ app.use((req, res, next)=>{
     });
 });
 
-app.listen(port, ()=>{
+app.listen(PORT, ()=>{
     console.log(`Ejemplo de app escuchando en el url http://localhost:${port}`);
 });
