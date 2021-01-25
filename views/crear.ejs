@@ -1,0 +1,22 @@
+<%- include("template/header",{tituloP:"Crear nueva mascota"}) %> 
+
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title">Crear</h5>
+            </div>
+            <div class="modal-body">
+                <form class="col-12" action="/mascotas" method="POST" >
+                    <div class="mb-3">
+                        <input type="text" name="nombre" class="form-control bg-dark text-white" placeholder="Nombre Mascota" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="descripcion" class="form-control bg-dark text-white" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<%- include("template/footer") %> 
