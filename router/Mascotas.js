@@ -59,4 +59,27 @@ router.get('/:id', async(req,res)=>{
     }
 });
 
+router.delete('/:id',async(req,res)=>{
+    const id = req.params.id;
+
+    try {
+        const mascota = await Mascota.findByIdAndDelete({_id:id});
+
+        if (mascota) {
+            res.json({
+                estado: true,
+                mensaje: "eliminado"
+            });
+        } else {
+            res.json({
+                estado: false,
+                mensaje: "Falló eliminar"
+            });
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 module.exports = router;
