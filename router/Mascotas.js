@@ -82,4 +82,27 @@ router.delete('/:id',async(req,res)=>{
     }
 });
 
+router.put('/:id', async(req,res)=>{
+    const id = req.params.id;
+
+    const body = req.body;
+
+    try {
+        
+        const mascota = await Mascota.findByIdAndUpdate(id, body, {useFindAndModify: false});
+
+        res.json({
+            estado: true,
+            mensaje: "Actualizado"
+        });
+
+    } catch (error) {
+        //console.log(error);
+        res.json({
+            estado: false,
+            mensaje: "Falló update"
+        });
+    }
+});
+
 module.exports = router;

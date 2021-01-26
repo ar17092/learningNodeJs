@@ -13,25 +13,27 @@
         </div>
             <% } %>
     <% if (!error) { %>
-        <a href="/mascotas" class="btn btn-primary my-4"><i class="fas fa-arrow-circle-left"></i></a>
-        <table class="table table-dark table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="col"><%= mascota?.id %> </th>
-                    <td ><%= mascota?.nombre %> </th>
-                    <td ><%= mascota?.descripcion %> </th>
-                    <td><button id="deleteBtn" data-id="<%= mascota?.id %>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="col-12" id="formulario" data-id="<%= mascota?.id %>">
+                        <div class="mb-3">
+                            <input type="text" id="nombreI" value="<%= mascota?.nombre %>" name="nombre" class="form-control bg-dark text-white" placeholder="Nombre Mascota" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="descripcion" id="infoI" class="form-control bg-dark text-white" id="exampleFormControlTextarea1" rows="3" placeholder="Descripción" required><%= mascota?.descripcion %></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-save"></i> Guardar</button>
+                    </form>
+                    <hr>
+                    <button id="deleteBtn" data-id="<%= mascota?.id %>" class="btn btn-danger my-4"><i class="fas fa-trash-alt"></i></button>
+                    <a href="/mascotas" class="btn btn-secondary my-2"><i class="fas fa-arrow-circle-left"></i> Back</a>
+                </div>
+            </div>
+        </div>
     <% } %>
 <%- include("template/footer") %> 
 
@@ -50,9 +52,41 @@
             if(res.estado){
                 window.location.href = '/mascotas'
             }else{
-                
+
             }
         }catch(e){
+            console.log(e);
+        }
+    });
+
+    const formulario = document.querySelector('#formulario');
+
+    formulario.addEventListener('submit', async(e) => {
+        e.preventDefault();
+        console.log('Submiteando');
+
+        const nombre = formulario.elements['nombre'].value;
+        const descripcion = document.querySelector('#infoI').value;
+        const id = formulario.dataset.id;
+        
+        try{
+            const data = await fetch(`/mascotas/${id}`,{
+                method: 'put',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({nombre,descripcion})
+            });
+            const res = await data.json()
+            console.log(res);
+            if(res.estado){
+                window.location.href = '/mascotas'
+            }
+            else{
+                console.log(res);
+            }
+        }
+        catch(e){
             console.log(e);
         }
     });
