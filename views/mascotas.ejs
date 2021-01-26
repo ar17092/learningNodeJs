@@ -18,7 +18,7 @@
                         <th scope="col"><%= element?.id %> </th>
                         <td ><%= element?.nombre %> </th>
                         <td ><%= element?.descripcion %> </th>
-                        <td ><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> <button class="btn btn-warning"><i class="fas fa-edit"></i></button></th>
+                        <td ><button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> <a href="/mascotas/<%= element?.id %>" class="btn btn-warning"><i class="fas fa-edit"></i></a></th>
                     </tr>
                 </tbody>
             <% }) %>

@@ -1,0 +1,35 @@
+<%- include("template/header",{tituloP:`Detalle de mascota`}) %>
+            <% if (error) { %>
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <p> <%= mensaje %>  </p>
+                    <a href="/mascotas" class="btn btn-warning btn-block my-4">Volver a tabla de mascotas</a>
+                </div>
+            </div>
+        </div>
+            <% } %>
+    <% if (!error) { %>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="col"><%= mascota?.id %> </th>
+                    <td ><%= mascota?.nombre %> </th>
+                    <td ><%= mascota?.descripcion %> </th>
+                    <td><a href="/mascotas" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    <% } %>
+<%- include("template/footer") %> 

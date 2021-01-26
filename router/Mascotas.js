@@ -30,6 +30,7 @@ router.get('/crear', (req,res)=>{
     res.render('crear');
 });
 
+//Crear nueva mascota
 router.post('/', async(req,res) =>{
     const body = req.body;
     try {
@@ -37,6 +38,24 @@ router.post('/', async(req,res) =>{
         res.redirect('/mascotas');
     } catch (error) {
         console.log(error);
+    }
+});
+
+//Obtener mascota por ID
+router.get('/:id', async(req,res)=>{
+    const id = req.params.id;
+    try {
+        const mascota  = await Mascota.findOne({_id: id});
+        res.render('detalle',{
+            mascota,
+            error: false
+        });
+    } catch (e) {
+        //console.log(e);
+        res.render('detalle',{
+            error: true,
+            mensaje:"No existe el id seleccionado"
+        });
     }
 });
 
