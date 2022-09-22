@@ -12,3 +12,6 @@ module.exports = {
     frutas,
     pisto
 }
+/*
+Comentario de prueba
+*/
